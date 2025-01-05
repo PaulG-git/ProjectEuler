@@ -62,5 +62,34 @@ namespace ProblemSolutions.ProgramFunctions
         }
       }
     }
+
+    public static void OutputIntList(List<uint> list)
+    {
+      foreach (uint n in list)
+      {
+        if (n != list.Last())
+        {
+          Console.Write(n + ", ");
+        }
+        else
+        {
+          Console.Write(n + ".\n");
+        }
+      }
+    }
+    public static bool IsDivideableByX(uint number, uint x)
+    {
+      if (number % x == 0)
+      { 
+        return true;
+      }
+      return false;
+    }
+
+    public static bool IsPrime(uint number)
+    {
+     
+      return false;
+    }
   }
 }

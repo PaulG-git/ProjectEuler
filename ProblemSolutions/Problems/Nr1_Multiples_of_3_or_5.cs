@@ -13,31 +13,24 @@ namespace ProblemSolutions.Problems
         Console.Write("\nPlease, specify the upper bound for the problem: ");
         
         int upperbound = ProgramMethods.CheckInputForInt();
-        uint count = 0;
-        uint sum = 0;
+        (uint count, uint sum) = (0, 0);
+        List<uint> multiples = [];
         
-        for (uint i = 0; i < upperbound; i++)
+        for (uint i = 1; i < upperbound; i++)
         {
-          uint evaluatedNumber = IsMultipleOf3Or5(i);
-          if (evaluatedNumber != 0)
+          if(ProgramMethods.IsDivideableByX(i, 3) || ProgramMethods.IsDivideableByX(i, 5))
           {
-            sum = sum + evaluatedNumber;
+            multiples = [.. multiples, i];
+            sum += i;
             count++;
           }
         }
-        
+
         Console.WriteLine($"There have been {count} multiples of 3 or 5 found.");
         Console.WriteLine($"Total sum of al those multiples is {sum}.");
+        Console.WriteLine("\nThe found multiples are:");
+        ProgramMethods.OutputIntList(multiples);
       } while (ProgramMethods.AskToContinue());
-    }
-
-    private static uint IsMultipleOf3Or5(uint number)
-    {
-      if (number % 3 == 0 || number % 5 == 0)
-      {
-        return number;
-      }
-      return 0;
     }
   }
 }
