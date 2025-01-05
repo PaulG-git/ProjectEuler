@@ -7,7 +7,8 @@ namespace ProjectEuler
   {
     private static readonly Dictionary<int, (string, Action)> _actions = new()
     {
-      {1, new (nameof(Nr1_Multiples_of_3_or_5), Nr1_Multiples_of_3_or_5.Solution)}
+      {1, new (nameof(Nr1_Multiples_of_3_or_5), Nr1_Multiples_of_3_or_5.Solution)},
+      {2, new (nameof(Nr2_Even_Fibonacci_Numbers), Nr2_Even_Fibonacci_Numbers.Solution)}
     };
 
     public static void Main()

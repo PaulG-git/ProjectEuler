@@ -45,5 +45,22 @@ namespace ProblemSolutions.ProgramFunctions
       Console.WriteLine("Please answer with 'y' for 'yes' or 'n' for 'no'. To return to main menu press 'r'.");
       return true;
     }
+
+    public static int CheckInputForInt()
+    {
+      while (true)
+      {
+        string? answer = Console.ReadLine();
+        if (int.TryParse(answer, out int evaluatedAnswer) && evaluatedAnswer > 0)
+        {
+          return evaluatedAnswer;
+        }
+        else
+        {
+          ConsoleUIMethods.ClearLastTwoLines();
+          Console.Write("Wrong input. Please specify a whole number for the upper bound: ");
+        }
+      }
+    }
   }
 }
