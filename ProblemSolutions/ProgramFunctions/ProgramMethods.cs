@@ -86,10 +86,29 @@ namespace ProblemSolutions.ProgramFunctions
       return false;
     }
 
-    public static bool IsPrime(uint number)
+    public static bool IsPrime(uint number) //WRONG!!!!! Stupid mistake! Rework tomorrow
     {
-     
-      return false;
+      for (int i = 2; i < number; i++)
+      {
+        if ((number % i) == 0)
+        { 
+          return false;
+        }
+      }
+      return true;
+    }
+
+    public static List<uint> FindPrimeFactors(List<uint> primesList, int upperNumber)
+    {
+      List<uint> primeFactors = [];
+      foreach (uint n in primesList)
+      {
+        if (upperNumber % n == 0)
+        { 
+          primeFactors = [.. primeFactors, n]; 
+        }
+      }
+      return primeFactors;
     }
   }
 }
