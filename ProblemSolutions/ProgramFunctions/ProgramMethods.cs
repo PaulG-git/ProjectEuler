@@ -63,6 +63,23 @@ namespace ProblemSolutions.ProgramFunctions
       }
     }
 
+    public static long CheckInputForLargeNumber()
+    {
+      while (true)
+      {
+        string? answer = Console.ReadLine();
+        if (long.TryParse(answer, out long evaluatedAnswer) && evaluatedAnswer > 0)
+        {
+          return evaluatedAnswer;
+        }
+        else
+        {
+          ConsoleUIMethods.ClearLastTwoLines();
+          Console.Write("Wrong input. Please specify a whole number for the upper bound: ");
+        }
+      }
+    }
+
     public static void OutputIntList(List<uint> list)
     {
       foreach (uint n in list)
@@ -77,6 +94,22 @@ namespace ProblemSolutions.ProgramFunctions
         }
       }
     }
+
+    public static void OutputLargeNumberList(List<long> list)
+    {
+      foreach (long n in list)
+      {
+        if (n != list.Last())
+        {
+          Console.Write(n + ", ");
+        }
+        else
+        {
+          Console.Write(n + ".\n");
+        }
+      }
+    }
+
     public static bool IsDivideableByX(uint number, uint x)
     {
       if (number % x == 0)
@@ -86,9 +119,9 @@ namespace ProblemSolutions.ProgramFunctions
       return false;
     }
 
-    public static bool IsPrime(uint number) //WRONG!!!!! Stupid mistake! Rework tomorrow
+    public static bool IsPrime(long number) 
     {
-      for (int i = 2; i < number; i++)
+      for (long i = 3; i < number; i += 2)
       {
         if ((number % i) == 0)
         { 
@@ -98,17 +131,13 @@ namespace ProblemSolutions.ProgramFunctions
       return true;
     }
 
-    public static List<uint> FindPrimeFactors(List<uint> primesList, int upperNumber)
+    public static bool IsFactor(long number, long upperNumber)
     {
-      List<uint> primeFactors = [];
-      foreach (uint n in primesList)
+      if (upperNumber % number == 0)
       {
-        if (upperNumber % n == 0)
-        { 
-          primeFactors = [.. primeFactors, n]; 
-        }
+        return true;
       }
-      return primeFactors;
+      return false;
     }
   }
 }

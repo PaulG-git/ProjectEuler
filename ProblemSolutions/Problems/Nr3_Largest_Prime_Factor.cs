@@ -12,23 +12,24 @@ namespace ProblemSolutions.Problems
         Console.WriteLine("Welcom to this problem solving program. This program is made to solve problems from Project Euler website.");
         Console.WriteLine("This program is made for the problem '#3 - Largest Prime Factor' and displays the largest prime factor for the given number.");
         Console.Write("\nPlease, specify the number for this program: ");
-        
-        int givenNumber = ProgramMethods.CheckInputForInt();
-        List<uint> primes = [];
-        
-        for (uint i = 1; i < givenNumber; i++)
+
+        long givenNumber = ProgramMethods.CheckInputForLargeNumber();
+        List<long> primeFactors = [];
+
+        for (long i = 3; i < Math.Sqrt(givenNumber); i += 2)
         {
-          if (ProgramMethods.IsPrime(i)) //False!!!! Rework tomorrow
+          if (ProgramMethods.IsFactor(i, givenNumber))
           {
-            primes = [.. primes, i]; 
+            if (ProgramMethods.IsPrime(i))
+            {
+              primeFactors = [.. primeFactors, i];
+            }
           }
         }
-        List<uint> primeFactors = ProgramMethods.FindPrimeFactors(primes, givenNumber);
 
-        Console.WriteLine("\nAll found primes are:");
-        ProgramMethods.OutputIntList(primes);
+        Console.WriteLine($"\nWe have found {primeFactors.Count} prime factors");
         Console.WriteLine("\nAll found prime factors are:");
-        ProgramMethods.OutputIntList(primeFactors);
+        ProgramMethods.OutputLargeNumberList(primeFactors);
         Console.WriteLine($"\nThe largest prime factor of the number {givenNumber} is {primeFactors.Last()}.");
       } while (ProgramMethods.AskToContinue());
     }
