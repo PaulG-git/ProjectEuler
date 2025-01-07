@@ -1,5 +1,4 @@
 ﻿using ProblemSolutions.ProgramFunctions;
-using ProblemSolutions.UiMethods;
 
 namespace ProblemSolutions.Problems
 {
