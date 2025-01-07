@@ -16,6 +16,11 @@ namespace ProblemSolutions.Problems
         long givenNumber = ProgramMethods.CheckInputForLargeNumber();
         List<long> primeFactors = [];
 
+        if (givenNumber % 2 == 0)
+        {
+          primeFactors = [.. primeFactors, 2];
+        }
+
         for (long i = 3; i < Math.Sqrt(givenNumber); i += 2)
         {
           if (ProgramMethods.IsFactor(i, givenNumber))
@@ -24,7 +29,16 @@ namespace ProblemSolutions.Problems
             {
               primeFactors = [.. primeFactors, i];
             }
+            if (ProgramMethods.IsPrime(givenNumber/i))
+            {
+              primeFactors = [.. primeFactors, i];
+            }
           }
+        }
+
+        if (givenNumber % givenNumber / 2 == 0 && ProgramMethods.IsPrime(givenNumber / 2))
+        {
+          primeFactors = [.. primeFactors, givenNumber / 2];
         }
 
         Console.WriteLine($"\nWe have found {primeFactors.Count} prime factors");
