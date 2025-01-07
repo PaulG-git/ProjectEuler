@@ -22,20 +22,20 @@ namespace ProblemSolutions.Problems
 
         for (long i = 3; i < Math.Sqrt(givenNumber); i += 2)
         {
-          if (ProgramMethods.IsFactor(i, givenNumber))
+          if (CalculationMethods.IsFactor(i, givenNumber))
           {
-            if (ProgramMethods.IsPrime(i))
+            if (CalculationMethods.IsPrime(i))
             {
               primeFactors = [.. primeFactors, i];
             }
-            if (ProgramMethods.IsPrime(givenNumber/i))
+            if (CalculationMethods.IsPrime(givenNumber/i))
             {
               primeFactors = [.. primeFactors, i];
             }
           }
         }
 
-        if (givenNumber % givenNumber / 2 == 0 && ProgramMethods.IsPrime(givenNumber / 2))
+        if (givenNumber % givenNumber / 2 == 0 && CalculationMethods.IsPrime(givenNumber / 2))
         {
           primeFactors = [.. primeFactors, givenNumber / 2];
         }

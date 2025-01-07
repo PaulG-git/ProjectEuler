@@ -18,7 +18,7 @@ namespace ProblemSolutions.Problems
         
         do
         {
-          if (ProgramMethods.IsDivideableByX(currentFibonacciNumber, 2))
+          if (CalculationMethods.IsDivideableByX(currentFibonacciNumber, 2))
           {
             evenFibonacciNumbers = [.. evenFibonacciNumbers, currentFibonacciNumber];
             count++;

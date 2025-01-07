@@ -110,32 +110,12 @@ namespace ProblemSolutions.ProgramFunctions
       }
     }
 
-    public static bool IsDivideableByX(uint number, uint x)
+    public static bool CheckIfPalindrome(string text)
     {
-      if (number % x == 0)
-      { 
-        return true;
-      }
-      return false;
-    }
-
-    public static bool IsPrime(long number) 
-    {
-      for (long i = 3; i < number; i += 2)
-      {
-        if ((number % i) == 0)
-        { 
-          return false;
-        }
-      }
-      return true;
-    }
-
-    public static bool IsFactor(long number, long upperNumber)
-    {
-      if (upperNumber % number == 0)
-      {
-        return true;
+      string? reversedText = text.Reverse().ToString();
+      if (text == reversedText)
+      {  
+        return true; 
       }
       return false;
     }

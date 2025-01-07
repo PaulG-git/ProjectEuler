@@ -18,7 +18,7 @@ namespace ProblemSolutions.Problems
         
         for (uint i = 1; i < upperbound; i++)
         {
-          if(ProgramMethods.IsDivideableByX(i, 3) || ProgramMethods.IsDivideableByX(i, 5))
+          if(CalculationMethods.IsDivideableByX(i, 3) || CalculationMethods.IsDivideableByX(i, 5))
           {
             multiples = [.. multiples, i];
             sum += i;
