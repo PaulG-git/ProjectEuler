@@ -1,4 +1,7 @@
 ﻿using ProblemSolutions.UiMethods;
+using System;
+using System.Numerics;
+using System.Runtime.InteropServices;
 
 namespace ProblemSolutions.ProgramFunctions
 {
@@ -44,6 +47,23 @@ namespace ProblemSolutions.ProgramFunctions
       Console.WriteLine("You entered the wrong answer!");
       Console.WriteLine("Please answer with 'y' for 'yes' or 'n' for 'no'. To return to main menu press 'r'.");
       return true;
+    }
+
+    public static int CheckInputKey(string prompt, int maxValue = Int32.MaxValue, int minValue = 1)
+    {
+      while (true)
+      {
+        string? answer = Console.ReadKey().KeyChar.ToString();
+        if (int.TryParse(answer, out int evaluatedAnswer) && evaluatedAnswer <= maxValue && evaluatedAnswer >= minValue)
+        {
+          return evaluatedAnswer;
+        }
+        else
+        {
+          ConsoleUIMethods.ClearCurrentConsoleLine();
+          Console.Write(prompt);
+        }
+      }
     }
 
     public static int CheckInputForInt()
@@ -112,7 +132,17 @@ namespace ProblemSolutions.ProgramFunctions
 
     public static bool CheckIfPalindrome(string text)
     {
-      string? reversedText = text.Reverse().ToString();
+      char[] textArray = [];
+      string reversedText = "";
+
+      foreach (char chr in text)
+        textArray = [.. textArray, chr];
+
+      char[] reversedArray = textArray.Reverse().ToArray();
+
+      foreach (char chr in reversedArray)
+        reversedText = $"{reversedText}{chr}";
+
       if (text == reversedText)
       {  
         return true; 

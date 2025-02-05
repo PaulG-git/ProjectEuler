@@ -24,14 +24,15 @@ namespace ProjectEuler
         Console.WriteLine(action.Key + "." + problemName);
       }
 
-      _actions[CheckInput()].Item2.Invoke();
+      _actions[CheckInputKey("Wrong input. Please specify the program that you want to run: ", _actions.Count)].Item2.Invoke();
     }
-    private static int CheckInput()
+
+    private static int CheckInputKey(string prompt, int maxValue = Int32.MaxValue, int minValue = 1)
     {
       while (true)
       {
         string? answer = Console.ReadKey().KeyChar.ToString();
-        if (int.TryParse(answer, out int evaluatedAnswer) && evaluatedAnswer <= _actions.Count && evaluatedAnswer > 0)
+        if (int.TryParse(answer, out int evaluatedAnswer) && evaluatedAnswer <= maxValue && evaluatedAnswer >= minValue)
         {
           Console.Clear();
           return evaluatedAnswer;
@@ -39,7 +40,7 @@ namespace ProjectEuler
         else
         {
           ConsoleUIMethods.ClearCurrentConsoleLine();
-          Console.Write("Wrong input. Please specify the program that you want to run: ");
+          Console.Write(prompt);
         }
       }
     }
