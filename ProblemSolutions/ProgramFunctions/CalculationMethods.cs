@@ -17,6 +17,15 @@ namespace ProblemSolutions.ProgramFunctions
       return false;
     }
 
+    public static bool IsDivideableByX(int number, int x)
+    {
+      if (number % x == 0)
+      {
+        return true;
+      }
+      return false;
+    }
+
     public static bool IsPrime(long number)
     {
       for (long i = 3; i < number; i += 2)

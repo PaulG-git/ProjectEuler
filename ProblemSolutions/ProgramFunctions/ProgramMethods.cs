@@ -83,6 +83,23 @@ namespace ProblemSolutions.ProgramFunctions
       }
     }
 
+    public static int CheckInputForInt(string prompt, int maxValue = Int32.MaxValue, int minValue = 1)
+    {
+      while (true)
+      {
+        string? answer = Console.ReadLine();
+        if (int.TryParse(answer, out int evaluatedAnswer) && evaluatedAnswer <= maxValue && evaluatedAnswer >= minValue)
+        {
+          return evaluatedAnswer;
+        }
+        else
+        {
+          ConsoleUIMethods.ClearLastTwoLines();
+          Console.Write(prompt);
+        }
+      }
+    }
+
     public static long CheckInputForLargeNumber()
     {
       while (true)
