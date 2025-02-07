@@ -12,7 +12,7 @@ namespace ProblemSolutions.Problems
         Console.WriteLine("This program is made for the problem '#5 - Smallest Multiple' and displays the smallest that is evenly divisible by all the numbers up to the specified number 'n'.");
         Console.Write("\nPlease, specify the number 'n': ");
 
-        int n = ProgramMethods.CheckInputForInt("Wrong input. Please specify a whole number between 1 and 20: ", 20);
+        int n = ProgramMethods.CheckInputForInt("Wrong input. Please specify a whole number from 2 up to 20: ", 20, 2);
         int counter = 0;
         int[] numbers = Enumerable.Range(1, n).ToArray();
         numbers = numbers.Reverse().ToArray();
@@ -29,7 +29,7 @@ namespace ProblemSolutions.Problems
           }
         }
         
-        do
+        while (true)
         {
           foreach (int i in numbers)
           {
@@ -46,7 +46,7 @@ namespace ProblemSolutions.Problems
 
           if (multipleFound)
             break;
-        } while (true);
+        }
 
         Console.WriteLine(smallestMultiple);
 
