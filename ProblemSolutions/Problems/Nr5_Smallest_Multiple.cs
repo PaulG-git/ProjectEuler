@@ -10,7 +10,7 @@ namespace ProblemSolutions.Problems
       {
         Console.WriteLine("Welcom to this problem solving program. This program is made to solve problems from Project Euler website.");
         Console.WriteLine("This program is made for the problem '#5 - Smallest Multiple' and displays the smallest that is evenly divisible by all the numbers up to the specified number 'n'.");
-        Console.Write("\nPlease, specify the number 'n': ");
+        Console.Write("\nPlease, specify the number 'n' from 2 to 20: ");
 
         int n = ProgramMethods.CheckInputForInt("Wrong input. Please specify a whole number from 2 up to 20: ", 20, 2);
         int counter = 0;
@@ -48,7 +48,7 @@ namespace ProblemSolutions.Problems
             break;
         }
 
-        Console.WriteLine(smallestMultiple);
+        Console.WriteLine($"\nThe smallest common multiple of numbers from 1 to {n} is {smallestMultiple}");
 
       } while (ProgramMethods.AskToContinue());
     }
