@@ -26,6 +26,15 @@ namespace ProblemSolutions.ProgramFunctions
       return false;
     }
 
+    public static bool IsDivideableByX(long number, long x)
+    {
+      if (x % number == 0)
+      {
+        return true;
+      }
+      return false;
+    }
+
     public static bool IsPrime(long number)
     {
       for (long i = 3; i < number; i += 2)
@@ -36,15 +45,6 @@ namespace ProblemSolutions.ProgramFunctions
         }
       }
       return true;
-    }
-
-    public static bool IsFactor(long number, long upperNumber)
-    {
-      if (upperNumber % number == 0)
-      {
-        return true;
-      }
-      return false;
     }
   }
 }

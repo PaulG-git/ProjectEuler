@@ -22,7 +22,7 @@ namespace ProblemSolutions.Problems
 
         for (long i = 3; i < Math.Sqrt(givenNumber); i += 2)
         {
-          if (CalculationMethods.IsFactor(i, givenNumber))
+          if (CalculationMethods.IsDivideableByX(i, givenNumber))
           {
             if (CalculationMethods.IsPrime(i))
             {
