@@ -13,7 +13,8 @@ namespace ProjectEuler
       {4, new (nameof(Nr4_Largest_Palindrome_Product), Nr4_Largest_Palindrome_Product.Solution)},
       {5, new (nameof(Nr5_Smallest_Multiple), Nr5_Smallest_Multiple.Solution)},
       {6, new (nameof(Nr6_Sum_Square_Difference), Nr6_Sum_Square_Difference.Solution)},
-      {7, new (nameof(Nr7_10_001st_Prime), Nr7_10_001st_Prime.Solution)}
+      {7, new (nameof(Nr7_10_001st_Prime), Nr7_10_001st_Prime.Solution)},
+      {8, new (nameof(Nr8_Largest_Product_in_a_Series), Nr8_Largest_Product_in_a_Series.Solution)}
     };
 
     public static void Main()
