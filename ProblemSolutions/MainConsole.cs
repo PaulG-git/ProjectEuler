@@ -1,32 +1,40 @@
-﻿using ProblemSolutions.Problems;
-using ProblemSolutions.ProgramFunctions;
+﻿using ProblemSolutions.ProgramFunctions;
 using ProblemSolutions.UiMethods;
+using System.Reflection;
 
 namespace ProjectEuler
 {
-  internal class MainConsole
+	internal class MainConsole
   {
-    private static readonly Dictionary<int, (string, Action)> _actions = new()
+		private static readonly Dictionary<int, (string, MethodBase)> _actions = [];
+		
+    private static readonly List<System.Type> FileList = Assembly.GetExecutingAssembly().GetTypes()
+											.Where(t => t.Namespace == "ProblemSolutions.Problems")
+											.Where(ca => !ca.CustomAttributes.Any())
+											.ToList();
+    
+    internal static void PopulateDictionary()
     {
-      {1, new (nameof(Nr1_Multiples_of_3_or_5), Nr1_Multiples_of_3_or_5.Solution)},
-      {2, new (nameof(Nr2_Even_Fibonacci_Numbers), Nr2_Even_Fibonacci_Numbers.Solution)},
-      {3, new (nameof(Nr3_Largest_Prime_Factor), Nr3_Largest_Prime_Factor.Solution)},
-      {4, new (nameof(Nr4_Largest_Palindrome_Product), Nr4_Largest_Palindrome_Product.Solution)},
-      {5, new (nameof(Nr5_Smallest_Multiple), Nr5_Smallest_Multiple.Solution)},
-      {6, new (nameof(Nr6_Sum_Square_Difference), Nr6_Sum_Square_Difference.Solution)},
-      {7, new (nameof(Nr7_10_001st_Prime), Nr7_10_001st_Prime.Solution)},
-      {8, new (nameof(Nr8_Largest_Product_in_a_Series), Nr8_Largest_Product_in_a_Series.Solution)},
-      {9, new (nameof(Nr9_Special_Pythagorean_Triplet), Nr9_Special_Pythagorean_Triplet.Solution)},
-      {0, ("Exit program", ProgramMethods.ExitProgram)}
-    };
+      foreach (var File in FileList)
+      {
+        var method = File.GetMethod("Solution");
+        if (method != null)
+				  _actions.Add(FileList.IndexOf(File) + 1, (File.Name, method.GetBaseDefinition()));
+      }
+      var exitMethod = typeof(ProgramMethods).GetMethod("ExitProgram");
+			if (exitMethod != null)
+			  _actions.Add(0, ("Exit program", exitMethod.GetBaseDefinition()));
+    }
 
     public static void Main()
     {
-      while (true)
+      PopulateDictionary();
+			while (true)
       {
         Console.WriteLine("Welcom to Project Euler solver program.");
         Console.WriteLine("Which problem do you want to view?");
-        foreach (var action in _actions)
+
+				foreach (var action in _actions)
         {
           if (action.Key == 0)
           {
@@ -40,7 +48,7 @@ namespace ProjectEuler
         }
 
         Console.Write("\nType the number of the program and then hit 'ENTER': ");
-        _actions[ProgramMethods.CheckInputLine(_actions.Count - 1, "Wrong input. Please specify the program that you want to run, then hit 'ENTER': ")].Item2.Invoke();
+        _actions[ProgramMethods.CheckInputLine(_actions.Count - 1, "Wrong input. Please specify the program that you want to run, then hit 'ENTER': ")].Item2.Invoke(null, null);
       }
     }
   }

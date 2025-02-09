@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProblemSolutions.UiMethods
+﻿namespace ProblemSolutions.UiMethods
 {
-  internal class StringMethods
+	internal class StringMethods
   {
     public static string ClassNameToString(string className, int keyNumber)
     {

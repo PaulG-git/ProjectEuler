@@ -1,11 +1,8 @@
 ﻿using ProblemSolutions.UiMethods;
-using System;
-using System.Numerics;
-using System.Runtime.InteropServices;
 
 namespace ProblemSolutions.ProgramFunctions
 {
-  internal class ProgramMethods
+	internal class ProgramMethods
   {
     public static void ExitProgram()
     {
