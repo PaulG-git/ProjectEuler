@@ -16,6 +16,7 @@ namespace ProjectEuler
       {6, new (nameof(Nr6_Sum_Square_Difference), Nr6_Sum_Square_Difference.Solution)},
       {7, new (nameof(Nr7_10_001st_Prime), Nr7_10_001st_Prime.Solution)},
       {8, new (nameof(Nr8_Largest_Product_in_a_Series), Nr8_Largest_Product_in_a_Series.Solution)},
+      {9, new (nameof(Nr9_Special_Pythagorean_Triplet), Nr9_Special_Pythagorean_Triplet.Solution)},
       {0, ("Exit program", ProgramMethods.ExitProgram)}
     };
 
