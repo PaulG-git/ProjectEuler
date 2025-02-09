@@ -1,4 +1,5 @@
 ﻿using ProblemSolutions.Problems;
+using ProblemSolutions.ProgramFunctions;
 using ProblemSolutions.UiMethods;
 
 namespace ProjectEuler
@@ -14,38 +15,31 @@ namespace ProjectEuler
       {5, new (nameof(Nr5_Smallest_Multiple), Nr5_Smallest_Multiple.Solution)},
       {6, new (nameof(Nr6_Sum_Square_Difference), Nr6_Sum_Square_Difference.Solution)},
       {7, new (nameof(Nr7_10_001st_Prime), Nr7_10_001st_Prime.Solution)},
-      {8, new (nameof(Nr8_Largest_Product_in_a_Series), Nr8_Largest_Product_in_a_Series.Solution)}
+      {8, new (nameof(Nr8_Largest_Product_in_a_Series), Nr8_Largest_Product_in_a_Series.Solution)},
+      {0, ("Exit program", ProgramMethods.ExitProgram)}
     };
 
     public static void Main()
     {
-      Console.WriteLine("Welcom to Project Euler solver program.");
-      Console.WriteLine("Which problem do you want to view?");
-      foreach (var action in _actions)
-      {
-        string problemName = StringMethods.ClassNameToString(action.Value.Item1, action.Key);
-        problemName = StringMethods.ReplaceSpace(problemName);
-        Console.WriteLine(action.Key + "." + problemName);
-      }
-
-      _actions[CheckInputKey("Wrong input. Please specify the program that you want to run: ", _actions.Count)].Item2.Invoke();
-    }
-
-    private static int CheckInputKey(string prompt, int maxValue = Int32.MaxValue, int minValue = 1)
-    {
       while (true)
       {
-        string? answer = Console.ReadKey().KeyChar.ToString();
-        if (int.TryParse(answer, out int evaluatedAnswer) && evaluatedAnswer <= maxValue && evaluatedAnswer >= minValue)
+        Console.WriteLine("Welcom to Project Euler solver program.");
+        Console.WriteLine("Which problem do you want to view?");
+        foreach (var action in _actions)
         {
-          Console.Clear();
-          return evaluatedAnswer;
+          if (action.Key == 0)
+          {
+            Console.WriteLine();
+            Console.WriteLine(action.Key + ". " + action.Value.Item1);
+            continue;
+          }
+          string problemName = StringMethods.ClassNameToString(action.Value.Item1, action.Key);
+          problemName = StringMethods.ReplaceSpace(problemName);
+          Console.WriteLine(action.Key + "." + problemName);
         }
-        else
-        {
-          ConsoleUIMethods.ClearCurrentConsoleLine();
-          Console.Write(prompt);
-        }
+
+        Console.Write("\nType the number of the program and then hit 'ENTER': ");
+        _actions[ProgramMethods.CheckInputLine(_actions.Count - 1, "Wrong input. Please specify the program that you want to run, then hit 'ENTER': ")].Item2.Invoke();
       }
     }
   }

@@ -7,6 +7,10 @@ namespace ProblemSolutions.ProgramFunctions
 {
   internal class ProgramMethods
   {
+    public static void ExitProgram()
+    {
+      Environment.Exit(1);
+    }
     public static bool AskToContinue()
     {
       Console.WriteLine("\nDo you want to run the program again? Type 'y' for 'yes' or 'n' for 'no'. To go back to main menu, please press 'r'.");
@@ -22,12 +26,12 @@ namespace ProblemSolutions.ProgramFunctions
         }
         else if (userAnswer == 'n')
         {
-          return false;
+          ExitProgram();
         }
         else if (userAnswer == 'r')
         {
           Console.Clear();
-          ProjectEuler.MainConsole.Main();
+          return false;
         }
 
         if (looped)
@@ -49,7 +53,25 @@ namespace ProblemSolutions.ProgramFunctions
       return true;
     }
 
-    public static int CheckInputKey(string prompt, int maxValue = Int32.MaxValue, int minValue = 1)
+    public static int CheckInputLine(int maxValue, string promptIfWrong)
+    {
+      while (true)
+      {
+        string? answer = Console.ReadLine();
+        if (int.TryParse(answer, out int evaluatedAnswer) && evaluatedAnswer <= maxValue)
+        {
+          Console.Clear();
+          return evaluatedAnswer;
+        }
+        else
+        {
+          ConsoleUIMethods.ClearLastTwoLines();
+          Console.Write(promptIfWrong);
+        }
+      }
+    }
+
+    public static int CheckInputKey(string prompt, int maxValue = 9, int minValue = 1)
     {
       while (true)
       {
